@@ -1,0 +1,56 @@
+{% extends 'inner-base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="well">
+  <div class="col-md-9">
+
+    <h3><strong>Future Plans for Aakash</strong></h3>
+    
+    <p align="justify">
+      After much deliberation, the Union HRD ministry has given the go ahead
+      to its ambitious Aakash IV project, and a cabinet note seeking
+      permission for the production of the low-cost tablet, is expected
+      soon. <br />
+
+      Under this proposal, HRD plans to procure over 22 lakh tablets at a
+      cost of Rs 330 crore through Directorate General of Supplies &
+      Disposal (DGS&D). For more about Aakash 4 please follow:</br></br>
+
+      <ul>
+	<li>
+	  <a href="{% static 'doc/Technical_details_Specification_Aakash4.pdf' %}"
+		 target="_blank">
+	    The Technical Particulars For Aakash IV For RC Period (01-01-2014 To
+	    31-12-2014)
+	  </a></br>
+	  <small>(Downloaded on 27/01/2014. Source: www.dgsnd.gov.in)</small>
+
+	<li>
+	  <a href="{% static 'doc/TenderDoc_Aakash4.pdf' %}"
+	       target="_blank"> The Schedule To Tender Inquiry
+	  </a></br>
+	  <small>(Downloaded on 27/01/2014. Source: www.dgsnd.gov.in)</small>
+	  <br />
+</ul>
+
+	  <p>
+	    In the first phase of the scheme, Aakash IV tablets will be
+	    given to engineering institutes, which will be directly
+	    bought from vendors empaneled by the DGS&D.  The tablet,
+	    estimated at USD 35 per piece, will be provided to
+	    students at a subsidised rate.
+	  </p>
+
+	  <p>
+	    The new version of the tablet will allow students to read
+	    and compose in Hindi, Kannada, Punjabi, Gujarati, Tamil,
+	    Malayalam, Manipuri, etc., along with audio-video chat
+	    facility.
+	  </p>
+
+
+  </div> <!-- col -->
+</div> <!-- well -->
+{% endblock body_block %}
+

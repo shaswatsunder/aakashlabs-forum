@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% load set_var %}
+{% block body_block %}
+ 
+<div class="container  footer_padding" style="padding-top:2.5cm;">
+ 
+
+     
+{% for i in posts %} 
+	{% set  flag = 0 %}
+	{% for reply in replies %}
+        	{% if reply.title.title == i.title %}
+             		{{reply.title.title}}
+             		</br>
+			
+            		{% set flag = 1 %}
+            		
+       		{% endif %}
+                 <script type="javascript">
+			var a = {{ flag }}
+		</script>
+       {% endfor %}
+    {{flag}}
+       {% if  a == 0 %}
+          
+         <h2><u>{{i.category}}</u></h2> 
+          <h5><b>POST~<b/><h5/>
+          <div class="post_body">
+             {{ i.body|safe|linebreaks }}
+          </div>
+          <div class="post_meta">
+          by <b>{{i.user}}</b> | {{ i.created_date }}
+          </div>
+       {% endif %}
+ 
+{% endfor %}
+
+</div>
+{% endblock %}

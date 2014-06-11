@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+<div class="container  footer_padding" style="padding-top:2.5cm;">
+
+  <h2>{{post.title}}</h2> <br/> 
+<h5><b>POST~<b/><h5/>
+  <div class="post_body">
+    {{ post.body|safe|linebreaks }}
+  </div>
+  <div class="post_meta">
+    by <b>{{post.user}}<b/> | {{ post.created_date }}
+  </div>
+
+  <hr>
+
+<h5><b>REPLY~<b/><h5/>  
+  {% for reply in replies %}
+  <div class="post_body">
+    {{ reply.body|safe|linebreaks }}
+  </div>
+
+  <div class="post_meta">
+    by <b>{{reply.user}}<b/> | {{ reply.post_date }}
+  </div>
+  {% endfor %}
+
+</div> <!-- container -->
+{% endblock %}

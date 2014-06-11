@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+- FAQs
+{% endblock title %}
+
+{% block body_block %}
+<div class="container  footer_padding" style="padding-top:2.5cm;">
+  <div class="page-header">
+      <h1><i class="fa fa-question-circle"></i> Frequently Asked<small>
+	  Questions</small> | <small>{{faqs|length}} question{{faqs|length|pluralize}}</small>
+      </h1>
+  </div>
+
+  {% if faqs %}
+  {% for faq in faqs %}
+  <h4><p class="lead text-info">
+      <strong>{{forloop.counter}}.</strong>
+      {{faq.question}}</p></h4>
+  <span class="glyphicon glyphicon-hand-right">
+  </span>
+  <pre class="pre-scrollable">
+    {{faq.answer|safe|linebreaks}}
+  </pre>
+  <hr>
+  {% endfor %}
+  {% else %}
+  <p class="text-muted">No FAQs.</p>
+  {% endif %}
+</div>
+{% endblock body_block %}

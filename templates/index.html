@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="container index footer_padding" style="padding-top:2.5cm;">
+  <div class="container-fluid"  >
+    <div class="row-fluid ">
+<div class="container container_content" >
+      <div class="col-md-3">
+	<div class="well well-sm sidebar" >
+	  {% block sidebar %}
+	<ul class="nav  ">
+	  <li class="active"><a href="/home/introduction" target="content" style="padding-top:2px">Introduction</a></li>
+	<!--  <li><a href="/home/proposal" target="content" style="padding-top:2px">Proposal by IITB</a></li> -->
+	  <li><a href="/home/history" target="content" style="padding-top:2px">History of Aakash</a></li>
+	  <li><a href="/home/configuration" target="content" style="padding-top:2px">Aakash Configuration</a></li>	
+	  <li><a href="/home/distribution" target="content" style="padding-top:2px">Tablet Distribution and Testing</a></li>
+	  <li><a href="/home/training" target="content" style="padding-top:2px">Training Programs</a></li>
+<li><a href="/home/sidebar_projects" target="content" style="padding-top:2px">Projects</a></li>
+
+	<!--	  <li><a href="/home/research" target="content" style="padding-top:2px">Research & Developement</a></li> -->
+	  <li><a href="/home/future" target="content" style="padding-top:2px">Future of Aakash</a></li>   
+	 </ul>
+	  {% endblock sidebar %}
+	</div>
+      </div>
+      
+	<div class="col-md-9" >
+	<!-- <div class="well" style=" overflow-y:scroll;"> -->
+	  {% block content %}
+		<iframe name="content" class="well" src="/home/introduction" width="100%" height="100%">
+ 			 <p>Your browser does not support iframes.</p>
+		</iframe>
+
+	  {% endblock content %}
+	<!-- </div> -->
+      </div>
+</div>
+
+<!-- News section -->
+<div class="col-md-12" style="padding-top:0.5cm" >
+  <div class="well well-sm news">
+    <p><strong>News and Events:</strong></p>
+    <marquee behavior="scroll"
+	     direction="left"
+	     scrollamount="3">
+	<p>
+	  We are going online soon &middot; Aakash centre coordinators
+	  are requested to upload theirs apps.
+	</p>
+    </marquee>
+  </div>
+</div>
+
+
+    </div> <!-- row-fluid -->
+  </div> <!-- container-fluid -->
+</div>	 <!-- container -->
+
+{% endblock body_block %}

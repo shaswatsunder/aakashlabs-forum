@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+- {{project.name}}
+{% endblock title %}
+
+{% block body_block %}
+<div class="container footer_padding" style="padding-top:2.5cm;">
+  {% if project %}
+  <div class="well">
+    <div class="row well">
+      <div class="col-md-3 col-md-offset-2">
+	{% if project.logo %}
+	<img src="media/{{project.logo}}" height="150" width="150"
+	     class="img-rounded img-responsive">
+	{% else %}
+	<div style="padding-top:10%;">
+	<i class="fa fa-android fa-5x"></i>
+	</div>
+	{% endif %}
+      </div>
+      
+      <div class="col-md-6">	 
+	<h1 class="text-default">{{project.name}}</h1>
+	<p class="text-muted">By <strong><a href="/ac/{{project.ac.id}}">{{project.ac}}</a></strong> (Centre ID: {{project.ac.ac_id}})</p>
+	<p class="text-muted"><strong>{{project.ac.city}}, {{project.ac.state}}</strong></p> 
+      </div>
+      </div> <!-- row well-->
+    
+      <div class="well">
+	<div class="row"  >
+	  <div class="col-md-3">
+	    {% if members %}
+	    <h3>Team Member{{members|length|pluralize}}</h3>
+	    {% for member in members %}
+	    {{forloop.counter}}. {{member}}<br/>
+	    {% endfor %}
+	    {% else %}
+	    <p>No team members.</p>
+	    {% endif %}
+
+	    {% if mentors %}
+	    <h3>Mentor{{mentors|length|pluralize}}</h3>
+	    {% for mentor in mentors %}
+	    {{forloop.counter}}. {{mentor}}<br/>
+	    {% endfor %}
+	    {% else %}
+	    <p>No mentors.</p>
+	    {% endif %}
+	  </div> <!-- col-md-3 -->
+	  
+	  <div  class="col-md-9 well" >
+	    <strong class="text-info">Summary:</strong>
+	    <p align="justify">{{project.summary|safe|linebreaks}}</p>
+
+	    <strong class="text-info">Documentation:
+	      {% if project.doc_file %}
+	      <a href="/media/{{project.doc_file}}"><i class="fa fa-download"></i></a>
+	      {% endif %}
+	    </strong>
+	    <p ><a href={{project.doc_url}}>{{project.doc_url}}</a></p>
+	    
+	    <strong class="text-info">Source code:</strong>
+	    <p align="justify"><a href={{project.src_url}}>{{project.src_url}}</a></p>
+
+	    {% if project.additional_url %}
+	    <strong class="text-info">Additional URL:</strong>
+	    <p align="justify"><a href={{project.additional_url}}>{{project.additional_url}}</a></p>
+	    {% endif %}
+	  </div> <!-- col-md-9 -->
+	</div> <!-- row -->
+
+	<div align="center">
+	  <form id="download_project_apk" method="post">
+	  {% csrf_token %}
+	  <button name="download" value={{project.id}}
+		  class="btn btn-primary btn-mini"
+		  align="center">
+	    <i class="glyphicon glyphicon-download-alt"></i>
+	    {{project.download_count}} download{{project.download_count|pluralize}}
+	  </button>
+	  </form>
+	</div>
+      </div> <!-- well -->
+
+      <p class="text-muted" align="center">Date uploaded : {{project.date_uploaded}}</p>      
+    </div> <!-- well -->
+  {% else %}
+  <div class="well" align="center">
+  <p class="text-info">No project found.</p>
+  </div>
+  {% endif %}
+  </div> <!-- container -->
+{% endblock body_block %}

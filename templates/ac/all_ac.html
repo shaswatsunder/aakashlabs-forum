@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+- Aakash Centres
+{% endblock title %}
+
+{% block body_block %}
+<div class="container footer_padding" style="padding-top:2.5cm;" align="center">
+    <div class="page-header">
+      <h1><i class="fa fa-building-o"></i> Aakash<small> Centres</small>
+      </h1>
+  </div>
+  <div class="well">
+    <table class="table table-responsive" border=0 cellpadding="10">
+    <tr>
+    <td align="center"><strong class="text-muted">Centre ID</strong>
+      <form>
+      	<input type="text" class="form-control" placeholder="Search by Centre ID..."
+      	       value="" name="suggest_ac_id" id="suggest_ac_id">
+      </form>
+    </td>
+    <td align="center"><strong class="text-muted">Centre name</strong>
+      <form>
+      	  <input type="text" class="form-control" placeholder="Search by name..."
+      	     value="" name="suggest_ac_name" id="suggest_ac_name">
+      </form>
+    </td>
+    <td align="center"><strong class="text-muted">City</strong>
+      <form>
+      	  <input type="text" class="form-control" placeholder="Search by city..."
+      	     value="" name="suggest_ac_city" id="suggest_ac_city">
+      </form>
+    </td>
+    <td align="center"><strong class="text-muted">State</strong>
+      <form>
+      	  <input type="text" class="form-control" placeholder="Search by state..."
+      	     value="" name="suggest_ac_state" id="suggest_ac_state">
+      </form>
+    </td>
+    <!-- <td>Coordinator</td> -->
+    </tr>
+    </table>
+    
+    <div id="cats">
+      {% include 'ac/ac_list.html' with aakashcentres=aakashcentres %}
+    </div> <!-- cats -->
+  </div>
+</div>
+
+<script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+<script src="{% static 'js/suggest.js' %}"></script>
+{% endblock body_block %}

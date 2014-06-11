@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official site for Aakash tablet - a low cost access device.">
+    <meta name="author" content="iitb">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+    <meta name="keywords" content="aakash, tablet, aakashlabs, mhrd, nmeict">
+    
+    <title>Aakashlabs{% block title %}{% endblock title %}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet">
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <link href="{% static 'css/iitb_activity.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome-4.0.3/css/font-awesome.min.css' %}"
+	  rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/star-rating.css' %}" media="all" rel="stylesheet">
+    
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+
+	
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>  
+    <a href="#" style=""><img src="{% static 'images/back-to-top.png' %}" id="back_to_top" title="Back to top" ></a>
+    <div class="navbar-wrapper">
+      <div class="container">
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container nav-sub_container" >
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/"><img src="{% static 'images/Aakash_logo.png' %}" alt="Aakash logo" width="80px" style="padding-left:5px; position:absolute; left:5px; z-index:3;"></a>
+              <a class="navbar-right-logo" href="http://www.iitb.ac.in/" target="_blank"><img src="{% static 'images/iitb_logo_white.png' %}" alt="IITB logo" width="55px"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav nav-left">
+                <li><a href="/">Home</a></li>
+              <!--  <li><a href="/about/">About</a></li> -->
+		 <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+		    <li><a href="/ac/projects/">All projects</a></li>
+                    <li><a href="/ac/iitb/">IITB projects</a></li>
+		    <li class="divider"></li>
+                    <li><a href="/gnu/">GNU/Linux on Aakash</a></li>
+                  </ul>
+                </li>
+		<!--  <li><a href="/activities/">Activities at IITB </a></li>-->
+		 <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Activities <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/activities/">IIT Bombay</a></li>
+                    <li><a href="/others/">AADL</a></li>
+		   
+                   <!-- <li class="divider"></li>
+                    <li><a href="/compete/">Compete</a></li>
+                    <li><a href="#">News</a></li> -->
+                  </ul>
+                </li>		
+		<li><a href="/faqs/">FAQs</a></li>
+		 <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Questions <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/forum/"><b>all questions</b></a></li>
+		    <li class="divider"></li>
+		    <li><a href="/forum/latest/"><b>latest</b></a></li>
+                    <li><a href="/forum/votes/"><b>votes</b></a></li>
+		    <li><a href="/forum/frequent/"><b>frequent</b></a></li>
+		    <li><a href="/forum/unanswered/"><b>unanswered</b></a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+		    <li><a href="/ac/">Aakash Centres</a></li>
+                    <li class="divider"></li>		    
+                    <li><a href="http://docs.aakashlabs.org">Docs</a></li>
+                    <li><a href="/pubs/">Articles & publications</a></li>
+		    <li><a href="/tutorials/">Tutorials</a></li>
+		    <li class="divider"></li>
+                    <li><a href="/compete/">Compete</a></li>
+                  </ul>
+                </li>
+	      </ul>
+	      <ul class="nav navbar-nav nav-right">
+		<li><a href="/contact/">Contact Us</a></li>
+		{% if user.is_authenticated %}
+		<li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}}<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+		    <li><a href="/user/profile/">Profile</a></li>
+		    <li><a href="/logout/">Logout</a></li>
+		  </ul>
+		</li>
+		{% else %}
+		<!-- <li><a href="/ac/register/">Register</a></li> -->
+		<li><a href="/login/">Login</a></li>
+		{% endif %}
+              </ul>
+
+	      <!-- <ul class="nav navbar-nav navbar-right"> -->
+		<!-- <li><a href="/contact/">Contact Us</a></li> -->
+		<!-- <li><a href="#">Register</a></li> -->
+		<!-- <li><a href="#">Login</a></li> -->
+              <!-- </ul> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    {% block body_block %}
+    {% endblock body_block %} 
+
+    <!-- FOOTER -->
+    <footer >
+      <div id="footer-inner" class="container">
+      <div class="col-lg-4" align="center" id="mhrd">
+        <a href="http://mhrd.gov.in/" target="_blank">
+          <img src="{% static 'images/mhrd-logo.png' %}" alt="mhrd-logo">
+        </a>
+      </div>
+
+ <div class="col-lg-4" id="social" style="z-index:2">
+	<div id="social-icons">
+       
+        <a href="https://github.com/androportal" target="_blank">
+          <img src="{% static 'images/github-white.png' %}" alt="github">
+        </a>
+        <a href="https://plus.google.com/u/1/113521710419776077012">
+          <img src="{% static 'images/googleplus.png' %}" alt="googleplus">
+        </a>
+        <a href="#">
+          <img src="{% static 'images/facebook.png' %}" alt="facebook">
+        </a>
+        <a href="http://www.youtube.com/user/theaakashtablet" target="_blank">
+          <img src="{% static 'images/youtube.png' %}" alt="youtube">
+        </a>
+	</div>
+      </div>
+
+	 <div class="col-lg-4" align="center" id="nmeict" style="z-index:1">
+        <a href="http://www.sakshat.ac.in/" target="_blank">
+          <img src="{% static 'images/nmeict-logo.png' %}" alt="nmeict-logo">
+        </a>
+      </div>
+
+     
+
+     
+
+      </div> <!-- container -->
+      
+      <div class="container" id="credits">
+      	<div class="pull-left"> &copy; 2013-14 &middot; India Institute of
+      	Technology Bombay</div>
+        <div class="pull-right">
+	  <a href="/sitemap/">Sitemap</a> &middot;	  
+	  <a href="https://github.com/psachin/aakashlabs/graphs/contributors">Credits</a> &middot;
+	  <a href="/privacy/">Terms & Privacy</a>
+<!--	  <a href="#">Terms</a></div> -->
+      </div>
+      
+    </footer>
+    <!-- END OF FOOTER -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/star-rating.js' %}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46662661-1', 'aakashlabs.org');
+      ga('send', 'pageview');
+
+    </script>
+    <!-- Google analytics scripts ends here. -->
+    
+  </body>
+</html>

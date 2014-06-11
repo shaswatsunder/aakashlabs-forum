@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+- Project - add
+{% endblock title %}
+{% block body_block %}
+
+<script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+<script src="{% static 'js/project_add.js' %}"></script>
+
+<div class="container footer_padding" style="padding-top:2.5cm;">
+  <div class="page-header" align="center">
+      <h1><i class="fa fa-plus-square"></i> Add project
+      </h1>
+  </div>
+  <div class="row">
+    <form role="form" id="project_new" method="post"
+	  enctype="multipart/form-data">
+      {% csrf_token %}
+	<!-- {{contactform.as_p}} -->
+	<!-- Success/Error messages -->
+	{% if messages %}
+	{% for message in messages %}
+	{% if message.tags == "success" %}
+	<p class="text-info" align="center"><strong>{{ message }}</strong></p>
+	{% else %}
+	<p class="text-danger" align="center"><strong>{{ message }}</strong></p>
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+	
+	<!-- Success/Error messages ends here -->
+	<div class="col-lg-6">
+	  <h3>Project details.</h3>
+	  {{projectform.as_p}}
+	</div> <!-- col-lg-6 -->
+
+	<div class="col-lg-6">
+	  
+	  <h3>Other details(Optional).</h3>
+	  <h4 class="text-muted">Member detail.</h4>
+	  {{memberformset.management_form }}
+	  {% for member in memberformset.forms %}
+	  <div class="memberitem">
+	    {{ member.as_p }}
+	    <p>
+	      <a class="delete text-warning"
+		 onClick="deleteForm(this,'member','memberitem');">
+		Delete
+	      </a>
+	    </p>
+	  </div>
+	  {% endfor %}
+	  <p>
+	    <a id="add"
+	       onClick="addForm(this,'member','memberitem');" >
+	      Add another member
+	  </a>
+	  </p>
+
+	  <hr>
+	  <h4 class="text-muted">Mentor detail.</h4>	  
+	  {{mentorformset.management_form }}
+	  {% for mentor in mentorformset.forms %}
+	  <div class="mentoritem">
+	    {{ mentor.as_p }}
+	    <p>
+	      <a class="delete text-warning"
+		 onClick="deleteForm(this,'mentor','mentoritem');">
+		Delete
+	      </a>
+	    </p>
+	  </div>
+	  {% endfor %}
+	  <p>
+	    <a id="add"
+		onClick="addForm(this,'mentor','mentoritem');">
+	      Add another mentor
+	    </a>
+	  </p>
+
+	  <hr>
+	  {{agreement.as_p}}
+
+	</div> <!-- col-lg-6 -->
+
+	<div align="center">
+        <input type="submit" name="add_project" class="btn btn-primary"
+	       value="Add project" />
+	</div>
+    </form>
+  </div> <!-- row -->
+  
+</div><!-- /.container -->
+{% endblock body_block %}
+

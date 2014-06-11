@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+- Projects
+{% endblock title %}
+
+{% block body_block %}
+<link href="{% static 'css/project_list.css' %}" rel="stylesheet">
+<div class="container footer_padding" style="padding-top:2.5cm;" align="center">
+    <div class="page-header">
+      <h1>Projects<small> @ aakashlabs</small></h1>
+    </div>
+    <div class="row">
+  <div class="col-md-12 well">
+    <table class="table-responsive">
+      <tr>
+	<td align="center">
+	  <form>
+      	    <input type="text" class="form-control"
+		   placeholder="Search by Project name..."
+      		   value="" name="suggest_project_name"
+		   id="suggest_project_name">
+	  </form>
+	</td>
+	<!-- <td>Coordinator</td> -->
+      </tr>
+    </table>
+
+    <div id="cats">
+      {% include 'ac/project_list.html' with projects=projects %}
+    </div> <!-- cats -->
+  </div>   <!-- col-md-12 -->
+  </div>   <!-- row -->
+</div>
+
+<script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+<script src="{% static 'js/suggest.js' %}"></script>
+{% endblock body_block %}

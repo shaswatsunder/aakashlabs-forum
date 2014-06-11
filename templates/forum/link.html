@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+- all replies
+{% endblock title %}
+
+{% block body_block %}
+<div class="container  footer_padding" style="padding-top:2.5cm;">
+ 
+<h1><i class="fa fa-question-circle">{{post.title}}</h1>
+<h5><b>POST~<b/></h5>
+
+	<h5><p class="lead text-info">
+    	{{ post.body|safe|linebreaks }}</p></h5>
+	
+
+<div class="post_meta">
+	by <b>{{post.user}}</b> | {{ post.created_date }}
+</div>
+<br/>
+<span class="glyphicon glyphicon-hand-right">
+</span>
+
+<h5><b>REPLY~<b/><h5/>  
+{% for reply in replies %}
+
+  		<div class="post_body">
+    		<pre class="pre-scrollable">
+    		<br/>{{ reply.body }}
+    		 </pre>
+     &nbsp;&nbsp;&nbsp;&nbsp; by <b>{{reply.user}}</b> | {{ reply.post_date }}
+  </div>
+<br/>
+{% endfor %}
+</div>
+{% endblock %}

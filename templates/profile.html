@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+- Profile: {{user}}
+{% endblock title %}
+
+{% block body_block %}
+<div class="container" style="padding-top:2.5cm;">
+  <div class="page-header">
+      <h1><i class="fa fa-pagelines"></i> Profile
+	<small>
+	  | Welcome {{user.first_name|capfirst}}
+	  {{user.last_name|capfirst}}(<strong>{{user.username}}</strong>)
+	  | <a href="/user/profile/edit/"><em class="text-info">Update/Edit profile</em></a>
+	</small>
+      </h1>
+  </div>
+
+  {% if user.is_superuser %}
+  <p><a href="/admin/">Django Admin interface</a></p>
+  {% endif %}
+  {% if user.is_staff %}
+  <p><a href="/ac/register/">Register an Aakash Center</a></p>
+  {% endif %}
+  <p><a href="/ac/project/add/">Add new project</a></p>
+  <p><a class="text-danger" href="/user/password/change/">
+      Change password
+    </a>
+  </p>
+</div>
+{% endblock body_block %}

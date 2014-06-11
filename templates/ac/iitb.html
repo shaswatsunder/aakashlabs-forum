@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+- IITB Projects
+{% endblock title %}
+
+{% block body_block %}
+<div class="container footer_padding" style="padding-top:2.5cm;">
+  <div class="page-header" align="center">
+    <h1>Indian Institute of Technology <small>Bombay</small>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12 well">
+      {% for c in coordinator %}
+      <!-- comment -->
+      {% endfor %}
+      
+      {% if projects %}
+      <h3 align="center">List of project{{projects|pluralize}} <span class="badge">{{projects|length}}</span></h3>
+      <table class="table table-responsive table-striped">
+	<tr>
+	  <td align="left"><strong>Icon</strong></td>
+	  <td align="left"><strong>Project name</strong></td>
+	  <td align="center"><strong>Download</strong></td>	      
+	</tr>
+	<form id="download_project_form" method="post">
+	  {% csrf_token %}
+	  {% for project in projects %}
+	  <tr>
+	    <td align="left">
+	      {% if project.logo %}
+	      <img src="media/{{project.logo}}" height="60" width="60"
+		   class="img-rounded img-responsive">
+	      {% else %}
+	      <i class="fa fa-android fa-3x"></i>
+	      {% endif %}
+      <!-- {{forloop.counter}}.  -->
+	    </td>
+	    <td align="left">
+	      <strong><a href="/ac/project/{{project.id}}">{{project.name}}</a></strong>
+	    </td>
+	    <td align="center">
+	      <!-- {{project.id}} -->
+	      <button name="download" value={{project.id}} class="btn btn-primary btn-sm">
+		<i class="glyphicon glyphicon-download-alt"></i>
+		{{project.download_count}} download{{project.download_count|pluralize}}
+	      </button>
+	    </td>
+	  </tr>
+	  {% endfor %}
+	</form>
+      </table>
+      {% else %}
+      <div align="center">
+	<p>No projects at IITB.</p>
+      </div>
+      {% endif %}
+      </div>
+    </div> <!-- row -->
+  </div>	 <!-- container -->
+  {% endblock body_block %}
+  
