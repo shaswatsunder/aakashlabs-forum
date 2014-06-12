@@ -13,16 +13,15 @@ from django.db.models import Count
     
 def main(request, url):
     context = RequestContext(request)
-    if url == 'latest' :
+    if url == 'latest' : 
+        """ to fetch the latest posts with titles as link """                       
         posts=Post.objects.all().order_by("-created_date")
         context_dict = {
             'posts': posts,}
-    elif url == 'votes':
-        posts=Post.objects.all().order_by("-count")
-        context_dict = {
-            'posts': posts,}
+    
         
     elif url == 'unanswered':
+        """ to fetch the unanswered posts with titles as link """
         posts=Post.objects.all()
         replies = Reply.objects.all()
         files = []
@@ -37,67 +36,82 @@ def main(request, url):
             context_dict = {
                 'posts': files,}
     
-    elif url == 'frequent':
-        posts=Post.objects.all()
-        categories = Category.objects.all()
-        replies = Reply.objects.all()
-        for c in categories:
-            temp=0
-	    for p in posts:
-		if p.category.category == c.category :
-			temp = temp+1
-	p.count=temp
-        new_posts=Post.objects.all().order_by("-count")		
-        context_dict = {
-            'posts': new_posts,'replies':replies,}
-
+   
     elif url == '':
+        """ to fetch all posts with titles as link """
         posts= Post.objects.all()
         context_dict = {
             'posts': posts,}
  
    
-    return render_to_response('forum/latest.html', context_dict, context)
+    return render_to_response('forum/allqueries.html', context_dict, context)
     
-    
-def question_link(request, id, url):
-    context = RequestContext(request)
-    if url == 'question_link/(?P<id>\d+)':
-        post = Post.objects.get(pk=id)
-        replies = Reply.objects.filter(title=post)
 
-        context_dict = {
-            'post': post,
-            'replies': replies,
-        }
+def allqueries_link(request, id):
     
-    return render_to_response("forum/question_link.html", context_dict, context)
-
-def latest_link(request, id):
-    context = RequestContext(request)
+    context = RequestContext(request) # to display the latest, unanswered and  all posts with replies 
 
     post = Post.objects.get(pk=id)
     replies = Reply.objects.filter(title=post)
+    comments = Comment.objects.filter(answer=Reply.objects.get(pk=id))
    
     context_dict = {
         'post': post,
         'replies': replies,
+        'comments': comments,
     }
     
-    return render_to_response("forum/latest_link.html", context_dict, context)
+    return render_to_response("forum/allqueries_link.html", context_dict, context)
+
+def frequent(request):
+    """ to fetch the frequent posts with titles as link """
+    context = RequestContext(request)
+    posts=Post.objects.all().order_by("-count")
+    context_dict = {
+            'posts': posts,}
+    return render_to_response('forum/frequent.html', context_dict, context)
+    
+def votes(request):
+    """ to fetch the most voted posts with titles as link """
+    context = RequestContext(request)
+    posts=Post.objects.all().order_by("-count")
+    context_dict = {
+            'posts': posts,}
+    return render_to_response('forum/votes.html', context_dict, context)
+    
+
+def frequent_link(request, id):
+        """ to display the frequent posts with replies """
+	context = RequestContext(request)
+	post = Post.objects.get(pk=id)
+	post.count = post.count + 1
+	post.save()
+	replies = Reply.objects.filter(title=post)
+	context_dict = {
+        	'post': post,
+          	'replies': replies,
+          }
+	return render_to_response("forum/allqueries_link.html", context_dict, context)
 
 def votes_link(request, id):
-    context = RequestContext(request)
+        """ to display the most voted posts with replies """
+	context = RequestContext(request)
+	post = Post.objects.get(pk=id)
+	post.count = post.count + 1
+	post.save()
+	replies = Reply.objects.filter(title=post)
+	context_dict = {
+        	'post': post,
+          	'replies': replies,
+          }
+	return render_to_response("forum/allqueries_link.html", context_dict, context)
 
-    post = Post.objects.get(pk=id)
-    replies = Reply.objects.filter(title=post)
-   
-    context_dict = {
-        'post': post,
-        'replies': replies,
-    }
-    
-    return render_to_response("forum/votes_link.html", context_dict, context)
+
+
+
+
+
+
 
 
 

@@ -7,7 +7,7 @@ PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 RECAPTCHA_PUBLIC_KEY = 'insert your public key'
 RECAPTCHA_PRIVATE_KEY = 'insert your private key'
 # templates PATH
-TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates/forum')
+TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 # static PATH
 STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 

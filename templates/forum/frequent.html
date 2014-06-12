@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-- VOTEs
+- latest
 {% endblock title %}
 
 {% block body_block %}
 <div class="container  footer_padding" style="padding-top:2.5cm;">
 {% for i in posts %}
  
-<h1><i class="fa fa-question-circle">{{i.title}}</h1>
+<h2><i class="fa fa-question-circle"><a href="/forum/frequent_link/{{i.pk}}/" >{{i.title}}</a></h2>
 <h5><b>POST~<b/></h5>
 
 	<h5><p class="lead text-info">
@@ -19,24 +19,7 @@
 	by <b>{{i.user}}</b> | {{ i.created_date }}
 </div>
 <br/>
-<span class="glyphicon glyphicon-hand-right">
-</span>
 
-<h5><b>REPLY~<b/><h5/>  
-{% for reply in replies %}
-	{% if reply.title.title == i.title %}
-  		<div class="post_body">
-    		<pre class="pre-scrollable">
-    		<br/>{{ reply.body }}
-    		 </pre>
-     &nbsp;&nbsp;&nbsp;&nbsp; by <b>{{reply.user}}</b> | {{ reply.post_date }}
-  </div>
-<br/>
-
- 
-   
-{% endif %}
-  {% endfor %}
 {% endfor %}
 
 

@@ -1,14 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}
-- latest
-{% endblock title %}
 
 {% block body_block %}
 <div class="container  footer_padding" style="padding-top:2.5cm;">
 {% for i in posts %}
  
-<h2><i class="fa fa-question-circle"><a href="/forum/votes_link/{{i.pk}}/" >{{i.title}}</a></h2>
+<h2><i class="fa fa-question-circle"><a href="/forum/link/{{i.pk}}/" >{{i.title}}</a></h2>
 <h5><b>POST~<b/></h5>
 
 	<h5><p class="lead text-info">
